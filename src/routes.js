@@ -19,21 +19,34 @@ const jobs = [
         name: "Pizzaria Guloso",
         "daily-hours": 2,
         "total-hours": 60,
-        created_at: Date.now()
+        created_at: Date.now(),
     },
     {
         id: 2,
         name: "OneTwo Project",
         "daily-hours": 3,
         "total-hours": 47,
-        created_at: Date.now()
+        created_at: Date.now(),
     }
 ]
 
-routes.get('/', (req, res) => res.render(views + "index", { jobs }))
+routes.get('/', (req, res) => {
+
+    const updatedJobs = jobs.map((job) => {
+        // ajustes no JOB
+        // calculo de tempo de restante 
+        const remainingDays = (job['total-hours'] / job['daily-hours']).toFixed()
+        
+
+        return job 
+    })
+
+
+    return res.render(views + "index", { jobs })
+
+})
 routes.get('/job', (req, res) => res.render( views + "job"))
 routes.post('/job', (req, res) => {
-
     const lastId = jobs[jobs.length - 1]?.id || 1;    //mostra a quantidade de elementos dentro do array 
     
     jobs.push({
