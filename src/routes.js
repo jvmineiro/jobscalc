@@ -36,7 +36,10 @@ routes.get('/', (req, res) => {
         // ajustes no JOB
         // calculo de tempo de restante 
         const remainingDays = (job['total-hours'] / job['daily-hours']).toFixed()
-        
+
+        const createdDate = new Date(job.created_at)
+        const dueDay = createdDate.getDate() + Number(remainingDays)
+        //const dueDate = createdDate.setDate
 
         return job 
     })
