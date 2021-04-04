@@ -4,7 +4,7 @@ const routes = express.Router();
 // diretorio base
 const views = __dirname + "/views/"
 
-const profile = {
+const Profile = {
     data: {
         name: "Joao",
         avatar: "https://github.com/jvmineiro.png",
@@ -15,11 +15,15 @@ const profile = {
         "value-hour": 75 
     },
     controllers: {
-        index() {
+        index(req, res) {
             return res.render( views + "profile", { profile: Profile.data })
         },
-        update() {
-            
+        update(req, res) {
+            // req.body para pegar os dados
+            // definir quantos semanas tem em um anos
+            // para remover as semanas de ferias do ano 
+            // quantas horas por semana, estou trabalhando 
+            // total de horas trabalhadas no mês
         },
     }
 }
@@ -54,7 +58,7 @@ const Job = {
                     ...job,
                     remaining,
                     status,
-                    budget: profile['value-hour'] * job['total-hours']
+                    budget: Profile.data['value-hour'] * job['total-hours']
                 } 
             })
         
@@ -68,7 +72,7 @@ const Job = {
         save(req, res) {
             const lastId = Job.data[Job.data.length - 1]?.id || 1;    //mostra a quantidade de elementos dentro do array 
     
-            jobs.push({
+            Job.data.push({
                 id: lastId + 1,
                 name: req.body.name,
                 "daily-hours": req.body["daily-hours"],
@@ -104,4 +108,5 @@ routes.get('/job', Job.controllers.create)
 routes.post('/job', Job.controllers.save)
 routes.get('/job/edit', (req, res) => res.render( views + "job-edit"))
 routes.get('/profile', Profile.controllers.index)
+routes.post('/profile', Profile.controllers.update)
 module.exports = routes;
