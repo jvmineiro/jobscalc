@@ -20,10 +20,29 @@ const Profile = {
         },
         update(req, res) {
             // req.body para pegar os dados
-            // definir quantos semanas tem em um anos
-            // para remover as semanas de ferias do ano 
+            const data = req.body
+
+            // definir quantos semanas tem em um ano: 52
+            const weeksPerYear = 52
+
+            // para remover as semanas de ferias do ano, para pegar quantas semanas tem em 1 mes 
+            const weeksPerMonth = (weeksPerYear - data["vacation-per-year"])/ 12
+
             // quantas horas por semana, estou trabalhando 
+            const weekTotalHours = data["hours-per-day"] * data["days-per-week"]
+
             // total de horas trabalhadas no mês
+            const monthlyTotalHours = weekTotalHours * weeksPerMonth
+
+            // qual sera o valor da minha hora 
+            const valueHour = data["monthly-budget"] / monthlyTotalHours
+
+            Profile.data = {
+                ...Profile.data,
+                ...req.body,
+                "value-hour": valueHour
+            }
+            return res.redirect('/profile')
         },
     }
 }
@@ -82,6 +101,13 @@ const Job = {
 
             return res.redirect('/')
         },
+
+        show(req, res) {
+            const jobId = req.params.id
+            const job = Job.data.find(job => job.id === jobId)
+
+            return res.render( views + "job-edit", { job })
+        },
     },
 
     services: {
@@ -106,7 +132,7 @@ const Job = {
 routes.get('/', Job.controllers.index)
 routes.get('/job', Job.controllers.create)
 routes.post('/job', Job.controllers.save)
-routes.get('/job/edit', (req, res) => res.render( views + "job-edit"))
+routes.get('/job/:id', Job.controllers.show)
 routes.get('/profile', Profile.controllers.index)
 routes.post('/profile', Profile.controllers.update)
 module.exports = routes;
