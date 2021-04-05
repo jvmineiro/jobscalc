@@ -77,9 +77,10 @@
 
         <div class="cards">
 
+
           <% jobs.forEach((job) => { %>
 
-            <div class="card <%= job.status %> " data-id="<%= job.id %> ">
+            <div class="card <%= job.status %> " data-id="<%= job.id %>">
               <div class="id column"><%= job.id %> </div>
               <div class="name column">
                 <%= job.name %> 
@@ -88,8 +89,8 @@
                 <span>Prazo</span>
                 <p>
                   <% if(job.status === 'progress') { %>
-                    <%= job.remaining %> dias para a entrega
-                  <% } else { %> 
+                    <%= job.remaining %>  dias para a entrega
+                  <% } else { %>
                     Prazo encerrado
                   <% } %> 
                 </p>
@@ -118,6 +119,8 @@
 
           <% }) %> 
 
+         
+
         </div>
         <!-- end cards -->
       </main>
@@ -130,7 +133,7 @@
         <h3>Excluir Job</h3>
         <p>Quer mesmo excluir esse job? <br/>
         Ele será apagado para sempre.  
-        <p>
+        </p>
         <footer>
           <a 
             class="button gray" 
