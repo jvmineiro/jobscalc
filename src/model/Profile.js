@@ -1,5 +1,5 @@
 let data = {
-  name: "Joao Vitor",
+  name: "João Vitor",
   avatar: "https://github.com/jvmineiro.png",
   "monthly-budget": 3000,
   "days-per-week": 5,
