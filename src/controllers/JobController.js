@@ -8,7 +8,7 @@ module.exports = {
     },
 
     save(req, res) {
-        const jobs = Job.get()
+      const jobs = Job.get()
       const lastId = jobs[jobs.length - 1]?.id || 0;
 
       jobs.push({
@@ -23,8 +23,8 @@ module.exports = {
     },
 
     show(req, res) {
-        const jobId = req.params.id
-        const jobs = Job.get()
+      const jobId = req.params.id
+      const jobs = Job.get()
 
       const job = jobs.find(job => Number(job.id) === Number(jobId))
 
@@ -56,14 +56,15 @@ module.exports = {
         "daily-hours": req.body["daily-hours"], 
       }
 
-        const newJob = jobs.map(job => { 
+       const newJobs  = jobs.map(job => {
         if(Number(job.id) === Number(jobId)) {
           job = updatedJob
         }
         
         return job
       })
-      Job.update(newJob)
+
+      Job.update(newJobs)
 
       res.redirect('/job/' + jobId)
     },

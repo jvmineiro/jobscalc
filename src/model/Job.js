@@ -25,4 +25,4 @@ let data = [
       delete(id){
         data = data.filter(job => Number(job.id) !== Number(id))
       }
-  } 
+  }

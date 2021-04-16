@@ -3,10 +3,10 @@ const server = express()
 const routes = require("./routes")
 const path = require("path")
 
-// usando template engine, ouse seja, meu front esta na VIEWS
+// usando template engine
 server.set('view engine',  'ejs')
 
-//Mudar a localização da page views
+// Mudar a localização da pasta views
 server.set('views', path.join(__dirname, 'views'))
 
 //habilitar arquivos statics
