@@ -1,4 +1,4 @@
-const Database = rquire('config')
+const Database = require('config')
 
 Database()
 
