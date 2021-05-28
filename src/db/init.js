@@ -12,5 +12,7 @@ Database.exec(`CREATE TABLE profile (
     vacation-per-year INT,
     value-hour INT
 )`);
+
+Database.exec()
  
 Database.close()
