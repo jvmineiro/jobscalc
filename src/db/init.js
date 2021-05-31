@@ -36,11 +36,29 @@ Database.run(`INSERT INTO profile (
     5,
     4,
 );`)
+
+Database.run(`INSERT INTO jobs (
+    name.
+    daily_hours,
+    total_hours,
+    created-at,
+) VALUES (
+    "Pizzaria Guloso",
+    2,
+    1,
+    16175143766018
+);`)
+
+Database.run(`INSERT INTO jobs (
+    name.
+    daily_hours,
+    total_hours,
+    created-at,
+) VALUES (
+    "OneTwo Projects",
+    3,
+    47,
+    16175143766018
+);`)
  
 Database.close()
-
-// INSERT INTO jobs (
-//     name.
-//     daily_hours,
-
-// )
