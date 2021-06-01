@@ -1,22 +1,5 @@
 const Database = require("../db/config");
 
-let data = [
-  {
-    id: 1,
-    name: "Pizzaria Guloso",
-    "daily-hours": 2,
-    "total-hours": 1,
-    created_at: Date.now(),
-  },
-  {
-    id: 2,
-    name: "OneTwo Project",
-    "daily-hours": 3,
-    "total-hours": 47,
-    created_at: Date.now(),
-  },
-];
-
 module.exports = {
   async get() {
     const db = await Database();
@@ -33,13 +16,30 @@ module.exports = {
       created_at: job.created_at,
     }));
   },
+
   update(newJob) {
     data = newJob;
   },
+
   delete(id) {
     data = data.filter((job) => Number(job.id) !== Number(id));
   },
-  create(newJob) {
-    data.push(newJob);
+
+  async create(newJob) {
+    const db  = await Database()
+
+    await db.run(`INSERT INTO jobs (
+      name,
+      daily_hours,
+      total_hours,
+      created_at
+    ) VALUES (
+      "${newJob.name}",
+      ${newJob["daily-hours"]},
+      ${newJob["total-hours"]},
+      ${newJob.created_at}
+    )`)
+
+    await db.close()
   },
 };
